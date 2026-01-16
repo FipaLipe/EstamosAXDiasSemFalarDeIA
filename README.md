@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⏱️ Há quanto tempo o Lucas Montano está sem falar de IA?
 
-## Getting Started
+![Print da home]({6E015527-FF06-4ABC-8D40-4C96EFE31D2A}.png)
 
-First, run the development server:
+Um site simples que mostra **há quanto tempo o Lucas Montano está sem falar sobre Inteligência Artificial no YouTube**.
 
-```bash
+O contador é atualizado automaticamente quando um novo vídeo é publicado e identificado como sendo sobre IA.
+
+---
+
+## 🧠 Como funciona
+
+1. O site acompanha o canal do YouTube do Lucas Montano
+2. Periodicamente, um job roda para verificar se há vídeos novos
+3. Para cada vídeo novo:
+   - Coleta título e thumbnail
+   - Usa um modelo de IA para decidir se o vídeo é sobre IA
+4. Se o vídeo for identificado como sendo sobre IA:
+   - 🔄 o contador zera
+   - 📜 o evento é salvo no histórico
+
+---
+
+## ✨ Funcionalidades atuais
+
+- ⏱️ Contador em tempo real (dias, horas, minutos, segundos)
+- 📺 Exibição do último vídeo analisado
+- 🤖 Classificação automática assistida por IA
+- 🗂️ Histórico de vídeos analisados
+- 🔐 Rotas sensíveis protegidas por secret
+- ☁️ Arquitetura serverless e simples
+
+---
+
+## 🛠️ Stack
+
+- **Next.js (App Router)**
+- **React**
+- **Tailwind CSS**
+- **MongoDB Atlas**
+- **Gemini (Google AI)** – classificação de conteúdo
+- **GitHub Actions / Scheduler externo** – cron job
+- **Vercel** – deploy e hosting
+
+---
+
+## 📦 Estrutura geral do projeto
+
+app/  
+├─ api/  
+│ ├─ state/ # Estado atual do contador  
+│ └─ check/ # Checagem de novos vídeos  
+├─ page.tsx # Página principal  
+└─ components/
+
+lib/  
+└─ mongo.ts # Conexão com MongoDB
+
+---
+
+## 🔐 Variáveis de ambiente
+
+Crie um arquivo `.env.local` na raiz do projeto:
+
+MONGODB_URI=your_mongo_connection_string  
+CRON_SECRET=your_random_secret  
+GEMINI_API_KEY=your_gemini_key
+
+⚠️ **Nunca exponha secrets no client.**
+
+---
+
+## ⏰ Cron job
+
+Como o plano free da Vercel limita cron jobs, este projeto usa um **scheduler externo** (por exemplo, GitHub Actions) para chamar o endpoint:
+
+POST /api/check
+
+Com o header:
+
+x-cron-secret: CRON_SECRET
+
+---
+
+## 🧪 Rodando localmente
+
+npm install  
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Depois acesse:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🚧 Próximos passos (ideias)
 
-To learn more about Next.js, take a look at the following resources:
+- 🗳️ Sistema de votação da comunidade
+- 🏆 Ranking / recordes históricos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## ❤️ Créditos
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Criado por **Filipi Martins**  
+Projeto experimental, simples e feito por diversão
