@@ -85,20 +85,24 @@ export default function Home() {
   }, [streakStart, latestVideo]);
 
   return displayData ? (
-    <div className="flex flex-col items-center justify-center h-screen w-full bg-slate-50 p-20">
-      <div className="flex flex-col items-center justify-center h-full w-full">
-        <h1 className="text-4xl font-bold text-gray-800">ESTAMOS A</h1>
-        <h1 className="text-6xl font-bold text-red-600">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-slate-50 p-6 md:p-20 pt-20">
+      <div className="flex flex-col items-center justify-center h-full my-auto w-full">
+        <h1 className="text-2xl md:text-4xl font-bold text-gray-800">
+          ESTAMOS A
+        </h1>
+        <h1 className="text-4xl md:text-6xl font-bold text-red-600 text-center">
           {displayData.diffDays} Dias {displayData.diffHours}h{" "}
           {displayData.diffMinutes}min {displayData.diffSeconds}s
         </h1>
-        <h1 className="text-4xl font-bold text-gray-800">sem falar de IA</h1>
+        <h1 className="text-2xl md:text-4xl font-bold text-gray-800">
+          sem falar de IA
+        </h1>
 
         <a
           href={`https://www.youtube.com/watch?v=${displayData.latestVideo.id}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex flex-row flex-wrap p-2 pt-6 gap-2 border border-gray-500 rounded-xl w-2xl mt-24 shadow:sm hover:scale-105 hover:shadow-lg transition-all duration-200 bg-white relative"
+          className="flex flex-row flex-wrap p-2 pt-6 gap-2 border border-gray-500 rounded-xl max-w-2xl w-full mt-12 md:mt-24 shadow:sm hover:scale-105 hover:shadow-lg transition-all duration-200 bg-white relative"
         >
           <p className="text-gray-600 absolute -top-3 px-3 bg-gray-50 border border-red-600 rounded-full">
             Último vídeo processado:
@@ -109,9 +113,9 @@ export default function Home() {
             alt="Último Vídeo"
             width={320}
             height={120}
-            className="object-cover rounded-2xl w-4/12"
+            className="object-cover rounded-2xl w-full md:w-4/12"
           />
-          <div className="w-7/12 h-full flex flex-col py-4">
+          <div className="w-full md:w-7/12 h-full flex flex-col py-0 md:py-4">
             <h2 className="text-lg font-semibold text-gray-700">
               {displayData.latestVideo.title}
             </h2>
@@ -141,7 +145,7 @@ export default function Home() {
         </a>
       </div>
 
-      <p className="text-gray-800 mt-auto">
+      <p className="text-gray-800 text-center w-full">
         Criado com ❤️ por{" "}
         <a
           href="https://github.com/fipalipe"
