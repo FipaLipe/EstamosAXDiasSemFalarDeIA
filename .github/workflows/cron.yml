@@ -1,15 +1,15 @@
-name: Scheduled check
+# name: Scheduled check
 
-on:
-  schedule:
-    - cron: "*/30 * * * *" # cada 30 minutos
+# on:
+#   schedule:
+#     - cron: "*/30 * * * *" # cada 30 minutos
 
-jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Call check endpoint
-        run: |
-          curl --request POST \
-            --url "https://estamos-a-x-dias-sem-falar-de-ia.vercel.app/api/check" \
-            --header "x-cron-secret: ${{ secrets.CRON_SECRET }}"
+# jobs:
+#   run:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Call check endpoint
+#         run: |
+#           curl --request POST \
+#             --url "https://estamos-a-x-dias-sem-falar-de-ia.vercel.app/api/check" \
+#             --header "x-cron-secret: ${{ secrets.CRON_SECRET }}"
